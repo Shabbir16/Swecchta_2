@@ -115,7 +115,7 @@ public class IdentifyDustbin_2 extends AppCompatActivity {
                 mDatabase = database.getReference("dustbin").child(postId);
                 Post post = new Post(postId,author,postImageUrl,latlongText,userID,Useraddress);
                 mDatabase.setValue(post);
-                mDatabase = database.getReference("dusbinLocation").child(postId).child("loaction");
+                mDatabase = database.getReference("dusbinLocation").child(postId).child("location");
                 mDatabase.setValue(latlongText);
                 loading.setVisibility(View.INVISIBLE);
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());

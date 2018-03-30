@@ -28,7 +28,7 @@ public class Dustbin extends Fragment {
     }
 
     Button identify;
-    Button locate;
+    Button locate, legalDumpSite;
 
     ArrayList<String> arr=new ArrayList<>();
     @Override
@@ -43,6 +43,7 @@ public class Dustbin extends Fragment {
 
         identify = (Button)view.findViewById(R.id.identify);
         locate = (Button)view.findViewById(R.id.locate);
+        legalDumpSite = (Button)view.findViewById(R.id.legalDumpSite);
 
         identify.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,10 +59,17 @@ public class Dustbin extends Fragment {
         locate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loadData();
+                loadData("dusbinLocation");
 
 //                Toast.makeText(getContext(),"Locate",Toast.LENGTH_LONG).show();
 
+            }
+        });
+
+        legalDumpSite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadData("legalDumpSite");
             }
         });
 
@@ -70,9 +78,9 @@ public class Dustbin extends Fragment {
         return view;
     }
 
-    void loadData(){
+    void loadData(String loc){
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("dusbinLocation");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child(loc);
         ref.addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
@@ -95,7 +103,7 @@ public class Dustbin extends Fragment {
 
             //Get user map
             Map singleUser = (Map) entry.getValue();
-            arr.add((String)singleUser.get("loaction"));
+            arr.add((String)singleUser.get("location"));
 
         }
 
