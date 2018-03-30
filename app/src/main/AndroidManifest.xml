@@ -40,7 +40,8 @@
             android:theme="@style/Base.Theme.AppCompat" /> <!-- optional (needed if default theme has no action bar) -->
 
         <activity android:name=".LocateDustbin" />
-        <activity android:name=".IdentifyDustbin_2"></activity>
+        <activity android:name=".IdentifyDustbin_2" />
+        <activity android:name=".LeaderboardActivity"></activity>
     </application>
 
 </manifest>

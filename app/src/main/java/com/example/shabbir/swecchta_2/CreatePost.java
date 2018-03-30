@@ -181,7 +181,17 @@ public class CreatePost extends Fragment {
                     SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(myContext);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     int s =sharedPreferences.getInt("Post",0);
-                    editor.putInt("Post",(s+1));
+                    s++;
+                    editor.putInt("Post",s);
+                    mDatabase = database.getReference("leaderBoard").child(userID).child("post");//.child(postId)
+                    mDatabase.setValue(s);
+
+                    int score = sharedPreferences.getInt("score",0);
+                    score++;
+                    mDatabase = database.getReference("leaderBoard").child(userID).child("score");
+                    mDatabase.setValue(score);
+                    editor.putInt("score",score);
+
                     editor.apply();
 
 

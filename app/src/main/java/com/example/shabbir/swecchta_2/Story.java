@@ -76,29 +76,29 @@ public class Story extends Fragment {
          return view;
     }
 
-    void loadData(){
-        SharedPreferences shared = PreferenceManager.getDefaultSharedPreferences(getContext());
-//        database = FirebaseDatabase.getInstance();
-//        mStorage = FirebaseStorage.getInstance();
-        String userID = shared.getString("uid","");
+        void loadData(){
+            SharedPreferences shared = PreferenceManager.getDefaultSharedPreferences(getContext());
+    //        database = FirebaseDatabase.getInstance();
+    //        mStorage = FirebaseStorage.getInstance();
+            String userID = shared.getString("uid","");
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users").child(userID).child("posts");
-        ref.addListenerForSingleValueEvent(
-                        new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                //Get map of users in datasnapshot
-                                collectPhoneNumbers((Map<String,Object>) dataSnapshot.getValue());
-                                if(!arr.isEmpty())
-                                    mAdapter.notifyDataSetChanged();
-                            }
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users").child(userID).child("posts");
+            ref.addListenerForSingleValueEvent(
+                            new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    //Get map of users in datasnapshot
+                                    collectPhoneNumbers((Map<String,Object>) dataSnapshot.getValue());
+                                    if(!arr.isEmpty())
+                                        mAdapter.notifyDataSetChanged();
+                                }
 
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-                                //handle databaseError
-                            }
-                        });
-    }
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+                                    //handle databaseError
+                                }
+                            });
+        }
 
 
     private void collectPhoneNumbers(Map<String,Object> users) {

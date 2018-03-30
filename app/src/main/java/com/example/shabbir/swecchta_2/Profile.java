@@ -44,9 +44,9 @@ public class Profile extends Fragment {
     }
 
     private SharedPreferences shared;
-    String name, email, pic,post,dustbin,uid;
+    String name, email, pic,post,dustbin,uid,score;
 
-    TextView postNo,dustbinNo,userName,userEmail;
+    TextView postNo,dustbinNo,userName,userEmail,scoreText;
     CircleImageView profilePic;
     private FragmentActivity myContext;
     SharedPreferences sharedPreferences;
@@ -60,6 +60,7 @@ public class Profile extends Fragment {
         pic=shared.getString("pic","android.resource://com.example.shabbir.swecchta_2/mipmap/man");
         post=shared.getInt("Post",0)+"";
         dustbin=shared.getInt("dustbin",0)+"";
+        score = shared.getInt("score",0)+"";
     }
 
     @Override
@@ -71,12 +72,14 @@ public class Profile extends Fragment {
         dustbinNo=(TextView)view.findViewById(R.id.dustbinNo);
         userName=(TextView)view.findViewById(R.id.name);
         userEmail=(TextView)view.findViewById(R.id.email);
+        scoreText=(TextView)view.findViewById(R.id.score);
          profilePic=(CircleImageView) view.findViewById(R.id.profile);
 
         ImageView edit=(ImageView)view.findViewById(R.id.edit);
 
         postNo.setText(post+" Posts");
         dustbinNo.setText(dustbin+" Dustbins Identified");
+        scoreText.setText("Score : "+score);
         userName.setText(name);
         userEmail.setText(email);
 
@@ -98,11 +101,13 @@ public class Profile extends Fragment {
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent sendIntent = new Intent();
-                sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "I am happy to share my contribution, till now I have identified "+dustbin+" and resolve "+post+" dump problem.");
-                sendIntent.setType("text/plain");
-                startActivity(sendIntent);
+//                Intent sendIntent = new Intent();
+//                sendIntent.setAction(Intent.ACTION_SEND);
+//                sendIntent.putExtra(Intent.EXTRA_TEXT, "I am happy to share my contribution, till now I have identified "+dustbin+" and resolve "+post+" dump problem.");
+//                sendIntent.setType("text/plain");
+//                startActivity(sendIntent);
+                Intent i=new Intent(getContext(),LeaderboardActivity.class);
+                startActivity(i);
             }
         });
 

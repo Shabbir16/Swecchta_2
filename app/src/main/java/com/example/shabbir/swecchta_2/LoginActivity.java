@@ -203,20 +203,29 @@ public class LoginActivity extends AppCompatActivity {
                         editor.putString("email",email);
                         editor.putString("pic",photoUrl.toString());
                         editor.putString("uid",uid);
+                        editor.putInt("score",0);
+                        editor.putInt("post",0);
+                        editor.putInt("dustbin",0);
                         editor.apply();
                         author = new User(name, email,uid,photoUrl.toString());
+                        LeaderBoard leaderBoard = new LeaderBoard(photoUrl.toString(),name,0,0,0);
                         mDatabase.child("users").child(uid).setValue(author);
+                        mDatabase.child("leaderBoard").child(uid).setValue(leaderBoard);
                     }else{
                         name = user.getDisplayName();
                         email = user.getEmail();
                         uid = user.getUid();
                         String photoUrl =pro;// user2.getUrlToProfileImage();
+                        LeaderBoard l = (LeaderBoard) dataSnapshot.child("leaderBoard").child(uid).getValue();//.child("score").getValue();
                         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("name",name);
                         editor.putString("email",email);
                         editor.putString("pic",photoUrl.toString());
                         editor.putString("uid",uid);
+                        editor.putInt("score",l.getScore());
+                        editor.putInt("post",l.getPost());
+                        editor.putInt("dustbin",l.getDustbin());
                         editor.apply();
                     }
                 }

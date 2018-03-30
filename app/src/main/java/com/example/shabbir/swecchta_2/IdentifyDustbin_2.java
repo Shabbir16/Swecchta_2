@@ -121,7 +121,17 @@ public class IdentifyDustbin_2 extends AppCompatActivity {
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 int s =sharedPreferences.getInt("dustbin",0);
-                editor.putInt("dustbin",(s+1));
+                s++;
+                editor.putInt("dustbin",s);
+                mDatabase = database.getReference("leaderBoard").child(userID).child("dustbin");
+                mDatabase.setValue(s);
+
+                int score = sharedPreferences.getInt("score",0);
+                score++;
+                mDatabase = database.getReference("leaderBoard").child(userID).child("score");
+                mDatabase.setValue(score);
+                editor.putInt("score",score);
+
                 editor.apply();
                 onBackPressed();
 
