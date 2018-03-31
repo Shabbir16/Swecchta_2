@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp"
-                android:background="@drawable/gradient">
+                android:background="@android:color/holo_blue_bright">
 
                 <!--<TextView-->
                     <!--android:layout_width="match_parent"-->
@@ -42,7 +42,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="25sp"
-                    android:textColor="#000000"
+                    android:textColor="#ffffff"
                     android:text="SomeText"/>
             </LinearLayout>
 
