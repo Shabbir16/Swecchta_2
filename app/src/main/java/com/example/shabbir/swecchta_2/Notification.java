@@ -36,7 +36,7 @@ public class Notification extends Fragment {
     RecyclerView notification,dont;
 
 
-    private DoesDontAdapter mAdapter;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,6 +69,7 @@ public class Notification extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
+        DoesDontAdapter mAdapter;
         mAdapter = new DoesDontAdapter(myArr);
         recyclerView.setAdapter(mAdapter);
 
