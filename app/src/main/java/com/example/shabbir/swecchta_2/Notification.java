@@ -57,7 +57,7 @@ public class Notification extends Fragment {
 
 
 
-        loadData("notification");
+       // loadData("notification");
         loadData2("does",notification);
         loadData2("dont",dont);
         return view;
@@ -100,40 +100,40 @@ public class Notification extends Fragment {
                 });
     }
 
-    void loadData(String loc){
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        String userId = sharedPreferences.getString("uid", "");
-
-
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child(loc).child(userId);//.child("posts");
-        ref.addListenerForSingleValueEvent(
-                new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        //Get map of users in datasnapshot
-//                        List<String> arr=collectPhoneNumbers((Map<String, Object>) dataSnapshot.getValue());
-//                        showData(notification,arr);
-                        Map<String, Object> users = (Map<String, Object>) dataSnapshot.getValue();
-
-
-                        String noti="";
-
-                        for (Map.Entry<String, Object> entry : users.entrySet()) {
-
-                            Map singleUser = (Map) entry.getValue();
-                            noti=(String) singleUser.get("msg");
-                            //arr.add((String) singleUser.get("msg"));
-                        }
-                        notify.setText(noti);
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        //handle databaseError
-                    }
-                });
-    }
+//    void loadData(String loc){
+//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+//        String userId = sharedPreferences.getString("uid", "");
+//
+//
+//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child(loc).child(userId);//.child("posts");
+//        ref.addListenerForSingleValueEvent(
+//                new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                        //Get map of users in datasnapshot
+////                        List<String> arr=collectPhoneNumbers((Map<String, Object>) dataSnapshot.getValue());
+////                        showData(notification,arr);
+//                        Map<String, Object> users = (Map<String, Object>) dataSnapshot.getValue();
+//
+//
+//                        String noti="";
+//
+//                        for (Map.Entry<String, Object> entry : users.entrySet()) {
+//
+//                            Map singleUser = (Map) entry.getValue();
+//                            noti=(String) singleUser.get("msg");
+//                            //arr.add((String) singleUser.get("msg"));
+//                        }
+//                        notify.setText(noti);
+//
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(DatabaseError databaseError) {
+//                        //handle databaseError
+//                    }
+//                });
+//    }
 
     private List<String> collectPhoneNumbers(Map<String, Object> users) {
 
