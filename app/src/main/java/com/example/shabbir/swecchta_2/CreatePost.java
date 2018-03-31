@@ -43,6 +43,9 @@ import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.ByteArrayOutputStream;
 import java.net.InetAddress;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -174,7 +177,12 @@ public class CreatePost extends Fragment {
 //                    mDatabase = database.getReference("posts").child(postId);
                     mDatabase = database.getReference("users").child(userID).child("posts").child(postId);
 //                    Post post = new Post(postId,author,postImageUrl,descriptionText,userID,Useraddress);
-                    UserPost userPost = new UserPost(Useraddress,currentLocationCoordinates,descriptionText,"",postImageUrl,postId,author,userID,"","");
+                    Date c = Calendar.getInstance().getTime();
+                    SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+                    String formattedDate = df.format(c);
+//                    Toast.makeText(myContext,formattedDate,Toast.LENGTH_LONG).show();
+
+                    UserPost userPost = new UserPost(Useraddress,currentLocationCoordinates,descriptionText,formattedDate,postImageUrl,postId,author,userID,"","");
 
                     mDatabase.setValue(userPost);
 
